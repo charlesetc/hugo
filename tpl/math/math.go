@@ -54,7 +54,7 @@ func (ns *Namespace) Render(text interface{}) (string, error) {
 		return "", err
 	}
 
-	cmd := exec.Command("./hugo_parser.rb", filename)
+	cmd := exec.Command("./latex_parser.rb", filename)
 	cmd.Stdout = &out
 	cmd.Stderr = &stderr
 	if err := cmd.Run(); err != nil {
