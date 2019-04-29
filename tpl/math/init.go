@@ -29,6 +29,13 @@ func init() {
 			Context: func(args ...interface{}) interface{} { return ctx },
 		}
 
+		ns.AddMethodMapping(ctx.Render,
+			nil,
+			[][2]string{
+				{"{{math.Render \"hi\"}}", "hi"},
+			},
+		)
+
 		ns.AddMethodMapping(ctx.Add,
 			[]string{"add"},
 			[][2]string{

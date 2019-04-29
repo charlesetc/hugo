@@ -15,8 +15,13 @@
 package math
 
 import (
+	"bytes"
 	"errors"
+	"fmt"
+	"io/ioutil"
 	"math"
+	"math/rand"
+	"os/exec"
 
 	_math "github.com/gohugoio/hugo/common/math"
 
@@ -34,6 +39,30 @@ type Namespace struct{}
 // Add adds two numbers.
 func (ns *Namespace) Add(a, b interface{}) (interface{}, error) {
 	return _math.DoArithmetic(a, b, '+')
+}
+
+// Render renders LaTeX in the text.
+func (ns *Namespace) Render(text interface{}) (string, error) {
+	textf := cast.ToString(text)
+	var out bytes.Buffer
+	var stderr bytes.Buffer
+
+	var filename = fmt.Sprintf("/tmp/out%d.txt", rand.Int()%9999999)
+
+	err := ioutil.WriteFile(filename, []byte(textf), 0777)
+	if err != nil {
+		return "", err
+	}
+
+	cmd := exec.Command("./hugo_parser.rb", filename)
+	cmd.Stdout = &out
+	cmd.Stderr = &stderr
+	if err := cmd.Run(); err != nil {
+		fmt.Println("Got error while trying to parse", err)
+		return "", err
+	}
+
+	return out.String(), nil
 }
 
 // Ceil returns the least integer value greater than or equal to x.
