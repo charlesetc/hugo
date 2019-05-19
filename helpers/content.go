@@ -28,6 +28,7 @@ import (
 
 	"github.com/gohugoio/hugo/common/maps"
 
+	gomarkdown "github.com/charlesetc/gomarkdown"
 	"github.com/chaseadamsio/goorgeous"
 	bp "github.com/gohugoio/hugo/bufferpool"
 	"github.com/gohugoio/hugo/config"
@@ -351,15 +352,15 @@ func getMarkdownExtensions(ctx *RenderingContext) int {
 	}
 	return flags
 }
-
 func (c ContentSpec) markdownRender(ctx *RenderingContext) []byte {
-	if ctx.RenderTOC {
-		return blackfriday.Markdown(ctx.Content,
-			c.getHTMLRenderer(blackfriday.HTML_TOC, ctx),
-			getMarkdownExtensions(ctx))
-	}
-	return blackfriday.Markdown(ctx.Content, c.getHTMLRenderer(0, ctx),
-		getMarkdownExtensions(ctx))
+	// if ctx.RenderTOC {
+	// 	return blackfriday.Markdown(ctx.Content,
+	// 		c.getHTMLRenderer(blackfriday.HTML_TOC, ctx),
+	// 		getMarkdownExtensions(ctx))
+	// }
+	// return blackfriday.Markdown(ctx.Content, c.getHTMLRenderer(0, ctx),
+	// 	getMarkdownExtensions(ctx))
+	return gomarkdown.ToHTML(ctx.Content, nil, nil)
 }
 
 // getMmarkHTMLRenderer creates a new mmark HTML Renderer with the given configuration.

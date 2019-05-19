@@ -11,6 +11,7 @@ require (
 	github.com/bep/debounce v1.2.0
 	github.com/bep/gitmap v1.0.0
 	github.com/bep/go-tocss v0.6.0
+	github.com/charlesetc/gomarkdown v0.0.0-20190518142334-1257f04eee3b
 	github.com/chaseadamsio/goorgeous v1.1.0
 	github.com/cpuguy83/go-md2man v1.0.8 // indirect
 	github.com/disintegration/imaging v1.6.0
@@ -18,6 +19,7 @@ require (
 	github.com/fortytw2/leaktest v1.2.0
 	github.com/fsnotify/fsnotify v1.4.7
 	github.com/gobwas/glob v0.2.3
+	github.com/gomarkdown/markdown v0.0.0-20190222000725-ee6a7931a1e4 // indirect
 	github.com/gorilla/websocket v1.4.0
 	github.com/hashicorp/go-immutable-radix v1.0.0
 	github.com/inconshreveable/mousetrap v1.0.0 // indirect
